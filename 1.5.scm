@@ -1,0 +1,10 @@
+(define (new-sqrt x)
+  (define (good-enough? guess old-guess)
+    (< (abs (/ (- guess old-guess) guess)) 0.001))
+  (define (improve guess x)
+    (/ (+ guess (/ x guess)) 2))
+  (define (sqrt-iter guess old-guess x)
+    (if (good-enough? guess old-guess)
+        guess
+        (sqrt-iter (improve guess x) guess x)))
+  (sqrt-iter 1 0 x))
