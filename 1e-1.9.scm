@@ -22,38 +22,38 @@
   (if (< amount 0)
       0
       (cc-iter 1 0 0 0 0 0 0 0 0 0
-      	       1 0 0 0 0 0 0 0 0 0
-      	       1 0 0 0 0 0 0 0 0 0
-      	       1 0 0 0 0 0 0 0 0 0
-      	       amount)))
+               1 0 0 0 0 0 0 0 0 0
+               1 0 0 0 0 0 0 0 0 0
+               1 0 0 0 0 0 0 0 0 0
+               amount)))
 
 (define (cc-iter  a  b  c  d  e  f  g  h  i  j
-		 qa qb qc qd qe qf qg qh qi qj
-		 da db dc dd de df dg dh di dj
-		 na nb nc nd ne nf ng nh ni nj
-		 count)
+                 qa qb qc qd qe qf qg qh qi qj
+                 da db dc dd de df dg dh di dj
+                 na nb nc nd ne nf ng nh ni nj
+                 count)
   (if (< count 5)
       a
       (cc-iter (+ 1 na db qe j) a  b  c  d  e  f  g  h  i
-      	       (+ 1 na db qe)  qa qb qc qd qe qf qg qh qi
-      	       (+ 1 na db)     da db dc dd de df dg dh di
-      	       (+ 1 na)        na nb nc nd ne nf ng nh ni
-      	       (- count 5))))
+               (+ 1 na db qe)  qa qb qc qd qe qf qg qh qi
+               (+ 1 na db)     da db dc dd de df dg dh di
+               (+ 1 na)        na nb nc nd ne nf ng nh ni
+               (- count 5))))
 
 ; Of course, now we can look at this and realize we don't need most of these
 ; variables, making this ever so slightly neater.
 (define (cc-iter-new  a  b  c  d  e  f  g  h  i  j
-		     qa qb qc qd qe
-		     da db
-		     na
-		     count)
+                     qa qb qc qd qe
+                     da db
+                     na
+                     count)
   (if (< count 5)
       a
       (cc-iter (+ 1 na db qe j) a  b  c  d  e  f  g  h  i
-      	       (+ 1 na db qe)  qa qb qc qd
-      	       (+ 1 na db)     da
-      	       (+ 1 na)
-      	       (- count 5))))
+               (+ 1 na db qe)  qa qb qc qd
+               (+ 1 na db)     da
+               (+ 1 na)
+               (- count 5))))
 
 ; Neither of these generalizes well at all. Is there a nice way to write
 ; something that does?

@@ -2,5 +2,5 @@
   (define (ss x y)
 	(+ (* x x) (* y y)))
   (cond ((and (<= a b) (<= a c)) (ss b c))
-  	((<= b c)                (ss a c))
-  	(else                    (ss a b))))
+        ((<= b c)                (ss a c))
+        (else                    (ss a b))))
