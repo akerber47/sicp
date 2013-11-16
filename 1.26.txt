@@ -1,0 +1,5 @@
+By calling expmod twice each recursive step, we end up performing tree
+recursion (like in the first fibonnaci example) rather than linear recursion.
+Our tree has depth O(log n) and branches twice at each node, so the number of
+nodes in the tree - that is, the number of calls to expmod - will be
+O(2^log n) = O(n).

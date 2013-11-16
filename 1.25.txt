@@ -1,0 +1,4 @@
+This procedure does work, but it will require storing and performing arithmetic
+on very large numbers (repeated exponentiation quickly gets very large!). No
+real-life computer can do this efficiently once the size of the numbers exceeds
+the machine word size of the computer.

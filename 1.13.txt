@@ -1,0 +1,11 @@
+Obviously Fib(0) = (phi^0-psi^0)/sqrt(5)
+      and Fib(1) = (phi^1-psi^1)/sqrt(5)
+
+Since Fib(n) = Fib(n-1) + Fib(n-2)
+and phi and psi are both solutions to x^2 = x + 1,
+this formula is immediately true for all n
+(by induction, add the two previous formulas).
+
+Now it suffices to observe that abs(psi^n/sqrt(5)) < 1/2 for all n > 0,
+then since Fib(n) is always an integer it must be the nearest integer
+to phi^n/sqrt(5).
