@@ -1,0 +1,10 @@
+Yes. Basically, to reduce the percentage error of the result, we want to avoid
+repeating intervals in our expression, because each time we repeat we need to
+consider both extremes at each place in the formula, whereas we can get a
+better bound by using the fact that the interval has to have a consistent value
+over the formula.
+
+As an illuminating example, consider the expression (R_1/R_1). If we simplify
+this, we of course get a value of 1 (with zero error). But if we just plug in
+an interval for R_1 and naively apply our division procedure, we'll find
+something with a nonzero error (potentially quite large!).

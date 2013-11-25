@@ -1,0 +1,6 @@
+(define (fringe items)
+  (cond ((null? items) nil)
+        ((not (pair? items)) (list items))
+        (else (append (fringe (car items)) (fringe (cdr items))))))
+; > (fringe '(1 (2 3) (4 5)))
+; (mcons 1 (mcons 2 (mcons 3 (mcons 4 (mcons 5)))))

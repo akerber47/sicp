@@ -1,0 +1,11 @@
+If we have intervals c1 with percent tolerance p1, and c2 with percent
+tolerance p2, their exact endpoints are given by
+[c1 - c1*p1/100, c1 + c1*p1/100] and
+[c2 - c2*p2/100, c2 + c2*p2/100]
+So their product is given by (assuming all numbers positive)
+[c1*c2 - (c2*p1*c1+c1*p2*c2)/100+(c1*c2*p1*p2)/10000,
+ c1*c2 + (c2*p1*c1+c1*p2*c2)/100+(c1*c2*p1*p2)/10000]
+If we assume p1,p2 small we can neglect the 2nd order term, obtaining
+[c1*c2 - (c2*p1*c1+c1*p2*c2)/100,
+ c1*c2 + (c2*p1*c1+c1*p2*c2)/100]
+which has width c1*c2*(p1+p2)/100, and therefore percent tolerance p1+p2.
