@@ -1,5 +1,7 @@
 #lang r5rs
 
+; Implement all the custom things in SICP that are not part of R5RS scheme.
+
 (#%require (only racket/base
                  current-inexact-milliseconds
                  current-print
@@ -7,11 +9,7 @@
                  flush-output
                  make-parameter
                  random
-                 void?)
-           ;; TODO: Is the Racket "#%module-begin" doing anything we don't
-           ;; want?
-           (rename racket/base racket:module-begin #%module-begin)
-           (all-except (planet soegaard/sicp:2:=1/sicp) cons-stream))
+                 void?))
 
 (define-syntax sicp:error
   (syntax-rules ()
@@ -127,9 +125,10 @@
 
 (#%provide
  (for-syntax syntax-rules ...)
- (all-from-except r5rs #%module-begin)
- (rename racket:module-begin #%module-begin)
- (all-from (planet soegaard/sicp:2:=1/sicp))
+; (all-from-except r5rs #%module-begin)
+ (all-from r5rs)
+; (rename racket:module-begin #%module-begin)
+; (all-from (planet soegaard/sicp:2:=1/sicp))
  (rename sicp:error  error)
  (rename sicp:random random)
  check-expect
