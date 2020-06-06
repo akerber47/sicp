@@ -1,2 +1,0 @@
-This new square-root program will not terminate, as (unlike if) new-if expands
-all its arguments fully no matter the value of the predicate.

@@ -1,3 +1,0 @@
-Computes a+|b| in a clever way, by adding b if it's positive
-and subtracting it if it's negative (using a conditional to decide
-which operator to employ).

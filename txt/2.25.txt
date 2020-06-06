@@ -1,3 +1,0 @@
-(car (cdr (car (cdr (cdr x)))))
-(car (car x))
-(car (cdr (car (cdr (car (cdr (car (cdr (car (cdr (car (cdr x))))))))))))))

@@ -1,5 +1,0 @@
-(1+sqrt(5))/2 is a root of x = 1+1/x (quadratic formula).
-
-Can compute phi by
-(fixed-point (lambda (x) (+ 1 (/ 1 x))) 1.0)
-=> 1.6180327868852458

@@ -1,7 +1,0 @@
-We have [a,b] + [c,d] = [a+c,b+d]
-width = (b+d)-(a+c) = (b-a)+(d-c) = width [a,b] + width [c,d]
-and [a,b] - [c,d] = [a-d,b-c]
-width = (b-c)-(a-d) = (b-a)+(d-c) = width [a,b] + width [c,d]
-
-For multiplication, consider [0,1] * [0,2] = [0,2] vs [3,4] * [0,2] = [0,8]
-division, similarly [2,4] / [1,2] = [1,4] vs [6,8] / [1,2] = [3,8]

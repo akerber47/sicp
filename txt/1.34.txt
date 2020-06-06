@@ -1,5 +1,0 @@
-This is pretty straightforward.
-(f f)
-=> (f 2)
-=> (2 2)
-=> error: not a procedure

@@ -1,8 +1,0 @@
-The first version will begin by consing the squares of first (outermost)
-elements of items onto the accumulator list, things, first. Then later calls to
-iter will cons later elements of items onto that, resulting in them being
-earlier in the list. Basically, this code is written just like reverse from
-2.18 but with a squaring operation in between.
-
-The second version does not build well-formed lists, because it passes a list
-into cons as the first argument and a number in as the second.

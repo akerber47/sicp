@@ -1,2 +1,0 @@
-Applicative (strict): will not terminate
-Normal (lazy): will return 0
