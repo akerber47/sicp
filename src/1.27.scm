@@ -1,31 +1,16 @@
-(define (square x) (* x x))
+(define (filtered-accumulate filt combiner null-value term a next b)
+  (if (> a b)
+      null-value
+      (combiner (if (filt a)
+                    (term a)
+                    null-value)
+                (accumulate filt combiner null-value term (next a) next b))))
 
-(define (expmod base exp m)
-  (cond ((= exp 0) 1)
-        ((even? exp)
-         (remainder (square (expmod base (/ exp 2) m))
-                    m))
-        (else
-         (remainder (* base (expmod base (- exp 1) m))
-                    m))))
-
-(define (exhaustive-fermat-test n)
-  (define (test-iter a n)
-    (cond ((= a n) true)
-          ((= (expmod a n n) a) (test-iter (+ a 1) n))
-          (else false)))
-  (test-iter 1 n))
-
-; 561, 1105, 1729, 2465, 2821, and 6601
-; > (exhaustive-fermat-test 561)
-; #t
-; > (exhaustive-fermat-test 1105)
-; #t
-; > (exhaustive-fermat-test 1729)
-; #t
-; > (exhaustive-fermat-test 2465)
-; #t
-; > (exhaustive-fermat-test 2821)
-; #t
-; > (exhaustive-fermat-test 6601)
-; #t
+; These won't actually run, as I'm too lazy to copy over all the definitions
+; they depend on.
+(define (sum-sq-prime a b)
+  (filtered-accumulate prime? + 0 square a inc b))
+(define (prod-rel-prime n)
+  (define (rel-prime? i)
+    (= (gcd i n) 1))
+  (filtered-accumulate rel-prime? * 1 identity 1 inc n))

@@ -4,16 +4,27 @@
 (define (upper-bound x) (cdr x))
 
 (define (mul-interval x y)
-  (let ((p1 (* (lower-bound x) (lower-bound y)))
-        (p2 (* (lower-bound x) (upper-bound y)))
-        (p3 (* (upper-bound x) (lower-bound y)))
-        (p4 (* (upper-bound x) (upper-bound y))))
-    (make-interval (min p1 p2 p3 p4)
-                   (max p1 p2 p3 p4))))
-
-(define (div-interval x y)
-  (if (and (<= (lower-bound y) 0) (>= (upper-bound y) 0))
-      (error "Division by zero")
-      (mul-interval x
-                    (make-interval (/ 1.0 (upper-bound y))
-                                   (/ 1.0 (lower-bound y))))))
+  (let ((x1 (lower-bound x))
+        (x2 (upper-bound x))
+        (y1 (lower-bound y))
+        (y2 (upper-bound y)))
+    (cond
+      ((and (> x1 0) (> y1 0))                ; x,y all positive
+       (make-interval (* x1 y1) (* x2 y2)))
+      ((and (> x1 0) (< y2 0))                ; x all positive, y all negative
+       (make-interval (* x2 y1) (* x1 y2)))
+      ((> x1 0)                               ; x all positive, y crosses 0
+       (make-interval (* x2 y1) (* x2 y2)))
+      ((and (< x2 0) (> y1 0))                ; case 2, but x,y flipped
+       (make-interval (* x1 y2) (* x2 y1)))
+      ((and (< x2 0) (< y2 0))                ; x,y all negative
+       (make-interval (* x2 y2) (* x1 y1)))
+      ((< x2 0)                               ; x all negative, y crosses 0
+       (make-interval (* x1 y2) (* x1 y1)))
+      ((> y1 0)                               ; case 3, but x,y flipped
+       (make-interval (* x1 y2) (* x2 y2)))
+      ((< y2 0)                               ; case 6, but x,y flipped
+       (make-interval (* x2 y1) (* x1 y1)))
+      (else                                   ; both cross 0, need to compare
+       (make-interval (min (* x1 y2) (* x2 y1))
+                      (max (* x1 y1) (* x2 y2)))))))

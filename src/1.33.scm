@@ -1,16 +1,18 @@
-(define (filtered-accumulate filt combiner null-value term a next b)
-  (if (> a b)
-      null-value
-      (combiner (if (filt a)
-                    (term a)
-                    null-value)
-                (accumulate filt combiner null-value term (next a) next b))))
+(define dx 0.0001)
 
-; These won't actually run, as I'm too lazy to copy over all the definitions
-; they depend on.
-(define (sum-sq-prime a b)
-  (filtered-accumulate prime? + 0 square a inc b))
-(define (prod-rel-prime n)
-  (define (rel-prime? i)
-    (= (gcd i n) 1))
-  (filtered-accumulate rel-prime? * 1 identity 1 inc n))
+(define (compose f g)
+  (lambda (x) (f (g x))))
+
+(define (repeated f n)
+  (if (= n 0)
+      (lambda (x) x)
+      (compose f (repeated f (- n 1)))))
+
+(define (smooth f)
+  (lambda (x) (/ (+ (f (- x dx))
+                    (f x)
+                    (f (+ x dx)))
+                 3)))
+
+(define (n-smooth f n)
+  ((repeated smooth n) f))
