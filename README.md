@@ -8,10 +8,21 @@ exercises also, which are in the 2e/ directory.
 
 Download and use MIT Scheme. There is an Ubuntu packge.
 
-(Detailed instructions to fill in)
+You can load and run a solution with
+```
+$ mit-scheme --load <filename>
+```
+This will drop you directly into a REPL for testing.  For a one-off test, try
+```
+$ mit-scheme --load <filename> --eval <code>
+```
+
+I don't have a formal test framework ready yet so I'm just doing
+interactive testing. Logs of test cases I ran are in the `log-test/`
+directory.
 
 ## Organization
 
 - `src/` Solutions to programming exercises
+- `log-test/` Log output for interactive testing of exercises
 - `test/` Test cases for programming exercises
-- `txt/` Solutions to other exercises (in plaintext)
