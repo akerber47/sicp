@@ -1,0 +1,11 @@
+(define (run)
+  (assert (equal? (exp-deriv '(** x 2) 'x)
+                  '(* 2 x)))
+  (assert (equal? (exp-deriv '(** x 3) 'x)
+                  '(* 3 (** x 2))))
+  (assert (equal? (exp-deriv '(** (+ x y) 3) 'x)
+                  '(* 3 (** (+ x y) 2))))
+  (assert (equal? (exp-deriv '(** (* x y) 3) 'y)
+                  '(* 3 (* (** (* x y) 2) x))))
+  "All tests passed!"
+)
