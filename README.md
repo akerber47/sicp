@@ -26,3 +26,4 @@ directory.
 - `src/` Solutions to programming exercises
 - `log-test/` Log output for interactive testing of exercises
 - `test/` Test cases for programming exercises
+- `lib/` Support code from the book
