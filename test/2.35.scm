@@ -1,0 +1,12 @@
+(define (run)
+  (let ((s1 '(1 2 3))
+        (s2 '(2 3 4))
+        (s4 '(3)))
+    (assert (equal? (adjoin-set 4 s1) '(1 2 3 4)))
+    (assert (equal? (adjoin-set 1 s1) '(1 2 3)))
+    (assert (equal? (adjoin-set 1 s4) '(1 3)))
+    (assert (equal? (adjoin-set 4 s4) '(3 4)))
+    (assert (equal? (adjoin-set 1 ()) '(1)))
+    "All tests passed!"
+  )
+)

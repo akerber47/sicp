@@ -1,0 +1,13 @@
+(define (run)
+  (let ((t1 '(2 (1 () ()) (3 () ())))
+        (t2 '(7 (1 (0 () ()) (4 (2 () ()) (6 () ())))
+                (13 (10 () ()) ()))))
+    (assert (equal? (lookup 2 t1) 2))
+    (assert (equal? (lookup 3 t1) 3))
+    (assert (equal? (lookup 7 t1) #f))
+    (assert (equal? (lookup 10 t2) 10))
+    (assert (equal? (lookup 11 t2) #f))
+    (assert (equal? (lookup 2 t2) 2))
+    "All tests passed!"
+  )
+)
