@@ -2,6 +2,8 @@
 ; be actually defined in this version of MIT scheme.
 
 ; Ch 2
+(define princ write)
+(define print write-line)
 (define (atom? x) (or (null? x) (not (list? x))))
 
 (define nil ())
