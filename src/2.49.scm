@@ -1,0 +1,16 @@
+(define (type obj)
+  (cond ((symbol? obj) 'symbol)
+        ((number? obj) 'number)
+        ((not (null? obj)) (car obj))
+        (else (error "Bad typed obj" obj))))
+
+(define (contents obj)
+  (cond ((symbol? obj) obj)
+        ((number? obj) obj)
+        ((not (null? obj)) (cdr obj))
+        (else (error "Bad typed obj" obj))))
+
+(define (attach-type type contents)
+  (cond ((eq? type 'symbol) contents)
+        ((eq? type 'number) contents)
+        (else (cons type contents))))
