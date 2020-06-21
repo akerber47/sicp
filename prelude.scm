@@ -27,7 +27,7 @@
 (define (get type op)
   (get-from type op type-operator-table))
 (define (get-from type op tbl)
-  (cond ((null? tbl) (error "Type-operator not found!" type op))
+  (cond ((null? tbl) '())
         ((and (eq? type (caar tbl))
               (eq? op (cadar tbl)))
          (caddar tbl))
