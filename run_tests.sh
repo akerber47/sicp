@@ -10,6 +10,8 @@ fi
 if [[ -n "$1" ]]; then
   if [[ "$2" == "--no-eval" ]]; then
     mit-scheme --load "prelude.scm" "src/$1.scm" "test/$1.scm"
+  elif [[ "$2" == "--no-tests" ]]; then
+    mit-scheme --load "prelude.scm" "src/$1.scm"
   else
     mit-scheme --load "prelude.scm" "src/$1.scm" "test/$1.scm" --eval '(run)' </dev/null
   fi
