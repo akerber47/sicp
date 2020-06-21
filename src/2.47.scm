@@ -1,0 +1,8 @@
+(define (make-polar r a)
+  (define (dispatch m)
+    (cond ((eq? m 'real-part) (* r (cos a)))
+          ((eq? m 'imag-part) (* r (sin a)))
+          ((eq? m 'magnitude) r)
+          ((eq? m 'angle) a)
+          (else (error "Unknown op" m))))
+  dispatch)
