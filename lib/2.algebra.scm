@@ -65,7 +65,7 @@
 
 (define (make-term order coeff) (list order coeff))
 (define (order term) (car term))
-(define (coeff term) (cdr term))
+(define (coeff term) (cadr term))
 
 (define (make-polynomial variable term-list)
   (attach-type 'polynomial (cons variable term-list)))
