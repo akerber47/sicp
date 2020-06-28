@@ -62,9 +62,10 @@
 (put 'number 'gcd gcd)
 (put 'polynomial 'gcd gcd-poly)
 
-; 2.67 pseudo-remainder and reduce
+; 2.68 pseudo-remainder and reduce
 
 (define (pseudo-gcd-terms a b)
+  ; (write-line (list "pseud-gcd-terms:" a b))
   (if (empty-termlist? b)
       a
       (pseudo-gcd-terms b (pseudo-remainder-terms a b))))
@@ -79,11 +80,13 @@
   (let ((o1 (order (first-term a)))
         (o2 (order (first-term b)))
         (c (coeff (first-term b))))
-    (cadr (/terms
-            (*-term-by-all-terms
-              (make-term 0 (fast-exp c (+ 1 (- o1 o2))))
-              a)
-            b))))
+    (if (< o1 o2)
+        a
+        (cadr (/terms
+                (*-term-by-all-terms
+                  (make-term 0 (fast-exp c (+ 1 (- o1 o2))))
+                  a)
+                b)))))
 
 (define (gcd-all-coeffs tl acc)
   (if (empty-termlist? tl)
@@ -102,28 +105,40 @@
           ((big-nn
              (car (/terms
                     (*-term-by-all-terms factor n)
-                    (*-term-by-all-terms factor pgcd))))
+                    pgcd)))
            (big-dd
              (car (/terms
                     (*-term-by-all-terms factor d)
-                    (*-term-by-all-terms factor pgcd)))))
+                    pgcd))))
+          (divide-gcf big-nn big-dd))))))
 
-          (let
-            ((gcf
-               (gcd (gcd-all-coeffs big-nn
-                                    (coeff (first-term big-nn)))
-                    (gcd-all-coeffs big-dd
-                                    (coeff (first-term big-dd))))))
-            (cons
-              (*-term-by-all-terms (make-term 0 (/ 1 gcf))
-                                   big-nn)
-              (*-term-by-all-terms (make-term 0 (/ 1 gcf))
-                                   big-dd))))))))
+(define (divide-gcf big-nn big-dd)
+  ; (write-line (list "divide-gcf:" big-nn big-dd))
+  (let ((gcf
+         (gcd (gcd-all-coeffs big-nn
+                              (coeff (first-term big-nn)))
+              (gcd-all-coeffs big-dd
+                              (coeff (first-term big-dd))))))
+    ; (write-line (list "gcf:" gcf))
+    (list
+      (*-term-by-all-terms (make-term 0 (/ 1 gcf))
+                           big-nn)
+      (*-term-by-all-terms (make-term 0 (/ 1 gcf))
+                           big-dd))))
 
 ; 2.69
 
+(define (reduce-poly n d)
+  (if (eq? (variable n) (variable d))
+      (let ((reduced (reduce (term-list n)
+                             (term-list d))))
+        (make-rat
+          (make-polynomial (variable n) (car reduced))
+          (make-polynomial (variable d) (cadr reduced))))
+      (error "Polynomials not in same variable!" (list n d))))
+
 (define (make-rat-poly n d)
-  (attach-type 'rational (reduce n d)))
+  (attach-type 'rational (reduce-poly n d)))
 
 (define (make-rat-number n d)
   (attach-type 'rational
@@ -133,7 +148,7 @@
                    ((< d 0) (cons (- (/ n g)) (- (/ d g))))
                    (else (cons (/ n g) (/ d g)))))))
 
-(define (make-rat a b)
+(define (make-rational a b)
   (operate-2 'make-rat a b))
 
 (put 'number 'make-rat make-rat-number)
