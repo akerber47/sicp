@@ -32,3 +32,9 @@
               (eq? op (cadar tbl)))
          (caddar tbl))
         (else (get-from type op (cdr tbl)))))
+
+; Ch 3
+(define-syntax sequence
+  (syntax-rules ()
+    ((sequence stmt1 stmt2 ...)
+     (begin stmt1 stmt2 ...))))
