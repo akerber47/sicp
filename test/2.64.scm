@@ -34,12 +34,12 @@
 (define (run)
   (let ()
     ; sanity check that operations don't crash
-    (add p q)
-    (add rx ry)
-    (add ry rx)
-    (mul rx ry)
-    (mul ry rx)
-    (mul (mul rx z) (mul ry z))
+    (write-line (add p q))
+    (write-line (add rx ry))
+    (write-line (add ry rx))
+    (write-line (mul rx ry))
+    (write-line (mul ry rx))
+    (write-line (mul (mul rx z) (mul ry z)))
     ; basic assertions
     (assert (equal? (mul rx ry) (mul ry rx)))
     (assert (equal? (add rx rx) (mul rx 2)))
