@@ -119,3 +119,22 @@
                                    big-nn)
               (*-term-by-all-terms (make-term 0 (/ 1 gcf))
                                    big-dd))))))))
+
+; 2.69
+
+(define (make-rat-poly n d)
+  (attach-type 'rational (reduce n d)))
+
+(define (make-rat-number n d)
+  (attach-type 'rational
+               (let ((g (gcd (abs n) (abs d))))
+                 (cond
+                   ((= d 0) (error "Division by 0"))
+                   ((< d 0) (cons (- (/ n g)) (- (/ d g))))
+                   (else (cons (/ n g) (/ d g)))))))
+
+(define (make-rat a b)
+  (operate-2 'make-rat a b))
+
+(put 'number 'make-rat make-rat-number)
+(put 'polynomial 'make-rat make-rat-poly)
