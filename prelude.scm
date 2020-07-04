@@ -38,3 +38,8 @@
   (syntax-rules ()
     ((sequence stmt1 stmt2 ...)
      (begin stmt1 stmt2 ...))))
+
+; (list? x) evaluates to #f if x is not properly list-shaped
+; (circular, etc)
+; to follow the books's usage, need to redefine it.
+(define (atom? x) (not (pair? x)))
