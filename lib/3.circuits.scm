@@ -92,7 +92,7 @@
                (lambda ()
                  (print name)
                  (princ (current-time the-agenda))
-                 (princ "  New-value = ")
+                 (write-string "  New-value = ")
                  (princ (get-signal wire)))))
 
 (define (make-time-segment time queue)
