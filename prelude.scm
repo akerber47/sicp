@@ -3,7 +3,9 @@
 
 ; Ch 2
 (define princ write)
-(define print write-line)
+(define (print x)
+  (newline)
+  (write x))
 (define (atom? x) (or (null? x) (not (list? x))))
 
 (define nil ())
