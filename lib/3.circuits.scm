@@ -39,6 +39,10 @@
   (add-action! a1 and-action-procedure)
   (add-action! a2 and-action-procedure))
 
+(define (logical-and x y)
+  (cond ((and (= x 1) (= y 1)) 1)
+        (else 0)))
+
 (define (make-wire)
   (let ((signal-value 0)
         (action-procedures '()))
@@ -128,8 +132,8 @@
   (let ((q (make-queue)))
     (insert-queue! q action)
     (set-cdr! segments
-              (cons (make-time-segment time q))
-              (cdr segments))))
+              (cons (make-time-segment time q)
+                    (cdr segments)))))
 
 (define (remove-first-agenda-item! agenda)
   (delete-queue! (segment-queue (first-segment agenda))))
