@@ -1,0 +1,30 @@
+; library
+(define (centigrade-fahrenheit-converter c f)
+  (let ((u (make-connector))
+        (v (make-connector))
+        (w (make-connector))
+        (x (make-connector))
+        (y (make-connector)))
+    (multiplier c w u)
+    (multiplier v x u)
+    (adder v y f)
+    (constant 9 w)
+    (constant 5 x)
+    (constant 32 y)))
+; 9C = 5v, where v + 32 = F
+; ie 9C = 5(F - 32)
+
+(define (run)
+  ; library
+  (write-string "\nLibrary")
+  (let ((C (make-connector))
+        (F (make-connector)))
+    (centigrade-fahrenheit-converter C F)
+    (probe 'C: C)
+    (probe 'F: F)
+    (set-value! C 25 'user)
+    (set-value! F 212 'user)
+    (forget-value! C 'user)
+    (set-value! F 212 'user))
+
+  "All tests passed!")
