@@ -18,9 +18,9 @@
     (forget-value! a2 me)
     (process-new-value))
   (define (me request)
-    (cond ((eq? request 'I-have-a-value)
+    (cond ((eq? request 'i-have-a-value)
            process-new-value)
-          ((eq? request 'I-lost-my-value)
+          ((eq? request 'i-lost-my-value)
            process-forget-value)
           (else
             (error "Unknown request!"))))
@@ -30,9 +30,9 @@
   me)
 
 (define (inform-about-value constraint)
-  ((constraint 'I-have-a-value)))
+  ((constraint 'i-have-a-value)))
 (define (inform-about-no-value constraint)
-  ((constraint 'I-lost-my-value)))
+  ((constraint 'i-lost-my-value)))
 
 (define (multiplier m1 m2 product)
   (define (process-new-value)
@@ -54,9 +54,9 @@
     (forget-value! m2 me)
     (process-new-value))
   (define (me request)
-    (cond ((eq? request 'I-have-a-value)
+    (cond ((eq? request 'i-have-a-value)
            process-new-value)
-          ((eq? request 'I-lost-my-value)
+          ((eq? request 'i-lost-my-value)
            process-forget-value)
           (else
             (error "Unknown request!"))))
@@ -85,9 +85,9 @@
     (princ name)
     (write-string " = ?"))
   (define (me request)
-    (cond ((eq? request 'I-have-a-value)
+    (cond ((eq? request 'i-have-a-value)
            process-new-value)
-          ((eq? request 'I-lost-my-value)
+          ((eq? request 'i-lost-my-value)
            process-forget-value)
           (else
             (error "Unknown request!"))))
